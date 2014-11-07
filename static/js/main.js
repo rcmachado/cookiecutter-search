@@ -36,7 +36,7 @@
     }
 
     $(function () {
-        $('#go').on('click', function (e) {
+        $('#go').on('submit', function (e) {
             e.preventDefault();
 
             var searchTerm = $('#search-term').val();
