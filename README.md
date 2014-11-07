@@ -2,13 +2,13 @@
 
 A search interface for cookiecutter templates.
 
-You could see it running at [http://cookiecutter-search.herokuapp.com][]
+You could see it running at http://cookiecutter-search.herokuapp.com
 
 ## What is cookiecutter?
 
 Cookiecutter is a command-line utility that creates projects from
 cookiecutters (project templates). More information can be found at
-[https://github.com/audreyr/cookiecutter][].
+https://github.com/audreyr/cookiecutter.
 
 ## How to install
 
