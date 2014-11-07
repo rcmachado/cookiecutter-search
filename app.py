@@ -26,7 +26,7 @@ def _search_for_term(search_term):
     response = cache.get(cache_key)
     if not response:
         response = _make_request(search_term)
-        cache.set(cache_key, response, 3600)
+        cache.set(cache_key, response, 300)
     return response
 
 
