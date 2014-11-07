@@ -22,11 +22,11 @@ def search():
 
 
 def _search_for_term(search_term):
-    cache_key = 's-{}'.format(search_term)
-    response = cache.get(cache_key)
-    if not response:
-        response = _make_request(search_term)
-        cache.set(cache_key, response, 300)
+#    cache_key = 's-{}'.format(search_term)
+#    response = cache.get(cache_key)
+#    if not response:
+    response = _make_request(search_term)
+#        cache.set(cache_key, response, 300)
     return response
 
 
