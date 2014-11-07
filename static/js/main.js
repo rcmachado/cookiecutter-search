@@ -44,7 +44,7 @@
     }
 
     $(function () {
-        $('#go').on('submit', function (e) {
+        $('#search-template-form').on('submit', function (e) {
             e.preventDefault();
 
             var searchTerm = $('#search-term').val();
