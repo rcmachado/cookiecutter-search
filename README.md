@@ -21,7 +21,17 @@ You need to get a [GitHub OAuth token][oauth_token] and put it on a
 
     $ GITHUB_TOKEN='your-github-token' python app.py
 
-## Why and how
+## How it works (for now)
+
+It just search on GitHub for projects that have "cookiecutter templates"
+on their description. This allowed a quick PoC in one afternoon but has
+some drawbacks - for example, hitting the GitHub API rate limit,
+ignoring projects on other VCS services like BitBucket and so on.
+
+The obvious solution is to build an index - but this requires more
+thinking into the problem. Probably on another afternoon :)
+
+## Why
 
 This is a proof of concept built at [Python Brasil 10][] after the
 keynote by [Daniel Greenfeld][pydanny]. The main reason is, obviously,
