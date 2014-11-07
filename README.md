@@ -7,8 +7,8 @@ You could see it running at http://cookiecutter-search.herokuapp.com
 ## What is cookiecutter?
 
 Cookiecutter is a command-line utility that creates projects from
-cookiecutters (project templates). More information can be found at
-https://github.com/audreyr/cookiecutter.
+cookiecutters (project templates) created by [Audrey Greenfeld][audrey].
+More information can be found at https://github.com/audreyr/cookiecutter.
 
 ## How to install
 
@@ -21,6 +21,13 @@ You need to get a [GitHub OAuth token][oauth_token] and put it on a
 
     $ GITHUB_TOKEN='your-github-token' python app.py
 
+## Why and how
+
+This is a proof of concept built at [Python Brasil 10][] after the
+keynote by [Daniel Greenfeld][pydanny]. The main reason is, obviously,
+find cookiecutter templates more easily. And also because I want to
+give back to open source community.
+
 ## License
 
 This project is licensed under MIT license (see LICENSE file for
@@ -28,3 +35,6 @@ details). Note that each template has its own licensing terms (and you
 must comply with them) as of cookiecutter project.
 
 [oauth_token]: https://developer.github.com/v3/auth/#via-oauth-tokens
+[Python Brasil 10]: http://2014.pythonbrasil.org.br
+[pydanny]: http://pydanny.com
+[Audrey]: http://audreyr.com
