@@ -65,5 +65,5 @@ def _transform_response(github_response):
 
 
 if __name__ == "__main__":
-    app.debug = True #config.DEBUG
+    app.debug = config.DEBUG
     app.run()
