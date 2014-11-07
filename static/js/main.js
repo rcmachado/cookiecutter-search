@@ -15,9 +15,17 @@
     }
 
     function populateResultList(response) {
-        var html = '', results = response.results, result;
+        var html = '', results, result;
 
         resultList.empty();
+
+        if (response.error) {
+            $('.error').show().empty().text(response.error);
+            return;
+        }
+
+        results = response.results;
+
         if (results.length === 0) {
             $('.no-results-message').show();
             return;
@@ -42,6 +50,7 @@
             var searchTerm = $('#search-term').val();
 
             $('.no-results-message').hide();
+            $('.error').hide();
             var request = search(searchTerm);
             request.done(populateResultList);
         });
