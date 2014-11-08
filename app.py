@@ -22,31 +22,29 @@ def search():
 
 
 def _search_for_term(search_term):
-    cache_key = 's-{}'.format(search_term)
-    response = cache.get(cache_key)
-    if not response:
-        response = _make_request(search_term)
-    cache.set(cache_key, response, 300)
-    return response
+    response = _make_request(search_term)
+    return _parse_response(response)
 
 
+@cache.memoize(timeout=300)
 def _make_request(search_term):
     basic_auth = HTTPBasicAuth(config.GITHUB_TOKEN, 'x-oauth-basic')
     url = ('https://api.github.com/search/repositories?q="cookiecutter%20'
            'template"+{term}+in:description&sort=stars&order=desc')
 
-    github_response = requests.get(url.format(term=search_term),
-                                   auth=basic_auth)
+    return requests.get(url.format(term=search_term), auth=basic_auth)
 
-    if github_response.status_code == 401:
+
+def _parse_response(response):
+    if response.status_code == 401:
         response = {
             'error': "We're over quota. Please come back after a few minutes :)"
         }
-    elif github_response.status_code == 200:
-        response = _transform_response(github_response)
+    elif response.status_code == 200:
+        response = _transform_response(response)
     else:
         response = {
-            'error': 'An unknown error ocurred: {}'.format(github_response.status_code)
+            'error': 'An unknown error ocurred: {}'.format(response.status_code)
         }
 
     return response
