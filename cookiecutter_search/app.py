@@ -30,7 +30,7 @@ def _search_for_term(search_term):
 def _make_request(search_term):
     basic_auth = HTTPBasicAuth(config.GITHUB_TOKEN, 'x-oauth-basic')
     url = ('https://api.github.com/search/repositories?q="cookiecutter%20'
-           'template"+{term}+in:description&sort=stars&order=desc')
+           'template"+{term}+in:name+in:description&sort=stars&order=desc')
 
     return requests.get(url.format(term=search_term), auth=basic_auth)
 
