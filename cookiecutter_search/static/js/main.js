@@ -35,6 +35,7 @@
             result = results[i];
             html = '<div class="list-group">'
                 + '<a href="'+result.url+'" class="list-group-item">'
+                + '<span class="badge">'+result.stars+' stars</span>'
                 + '<h4 class="list-group-item-heading">'+result.name+'</h4>'
                 + '<p class="list-group-item-text">'+result.description+'</p>'
                 + '</a>'

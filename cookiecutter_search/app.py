@@ -58,6 +58,7 @@ def _transform_response(github_response):
             'name': item['full_name'],
             'description': item['description'],
             'url': item['html_url'],
+            'stars': item['stargazers_count'],
         })
     return {'results': response}
 
