@@ -2,20 +2,11 @@
 import os
 
 GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN')
-DEBUG = os.environ.get('DEBUG', False)
+DEBUG = os.environ.get('DEBUG', True)
 
-MEMCACHE = {
-    'SERVERS': os.environ.get('MEMCACHIER_SERVERS', '').split(','),
-    'USERNAME': os.environ.get('MEMCACHIER_USERNAME', ''),
-    'PASSWORD': os.environ.get('MEMCACHIER_PASSWORD', ''),
-    # These came from https://devcenter.heroku.com/articles/memcachier#django
-    'OPTIONS': {
-        'no_block': True,
-        'tcp_nodelay': True,
-        'tcp_keepalive': True,
-        'remove_failed': 4,
-        'retry_timeout': 2,
-        'dead_timeout': 10,
-        '_poll_timeout': 2000,
-    }
+CACHE = {
+    'CACHE_TYPE': os.environ.get('CACHE_TYPE', 'simple'),
+    'CACHE_MEMCACHED_SERVERS': [os.environ.get('MEMCACHIER_SERVERS', '127.0.0.1')],
+    'CACHE_MEMCACHED_USERNAME': os.environ.get('MEMCACHIER_USERNAME', ''),
+    'CACHE_MEMCACHED_PASSWORD': os.environ.get('MEMCACHIER_PASSWORD', ''),
 }

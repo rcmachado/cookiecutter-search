@@ -1,13 +1,13 @@
-import pylibmc
 import requests
 from requests.auth import HTTPBasicAuth
 from flask import Flask, request, render_template, jsonify
+from flask.ext.cache import Cache
 
 import config
 
 app = Flask(__name__)
-cache = pylibmc.Client(config.MEMCACHE['SERVERS'], binary=True,
-                       behaviors=config.MEMCACHE['OPTIONS'])
+cache = Cache(app, config=config.CACHE)
+
 
 @app.route("/")
 def index():
@@ -22,11 +22,11 @@ def search():
 
 
 def _search_for_term(search_term):
-#    cache_key = 's-{}'.format(search_term)
-#    response = cache.get(cache_key)
-#    if not response:
-    response = _make_request(search_term)
-#        cache.set(cache_key, response, 300)
+    cache_key = 's-{}'.format(search_term)
+    response = cache.get(cache_key)
+    if not response:
+        response = _make_request(search_term)
+    cache.set(cache_key, response, 300)
     return response
 
 
