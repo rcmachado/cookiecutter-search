@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: gunicorn cookiecutter_search.app:app --log-file -
