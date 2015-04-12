@@ -3,6 +3,7 @@ import os
 
 GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN')
 DEBUG = os.environ.get('DEBUG', True)
+PORT = os.environ.get('PORT', 8888)
 
 CACHE = {
     'CACHE_TYPE': os.environ.get('CACHE_TYPE', 'simple'),
