@@ -5,6 +5,7 @@ from tornado.web import RequestHandler, HTTPError
 
 from cookiecutter_search import config
 from cookiecutter_search.backends import GitHub
+from cookiecutter_search.cache import Memcache
 
 
 class BaseHandler(RequestHandler):
@@ -21,10 +22,18 @@ class SearchHandler(BaseHandler):
         token = getattr(config, 'GITHUB_TOKEN')
         if not token:
             raise HTTPError(500, 'Server misconfigured')
+
         self.github = GitHub(token)
+        self.cache = Memcache()
 
     @gen.coroutine
     def get(self):
         term = self.get_query_argument('q', None)
-        response = yield self.github.search(term)
+        cache_key = 'term={}'.format(term)
+        response = self.cache.get(cache_key)
+
+        if response is None:
+            response = yield self.github.search(term)
+            self.cache.set(cache_key, response, 3600 * 24)
+
         self.write(response)

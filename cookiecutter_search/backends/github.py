@@ -2,6 +2,7 @@
 import json
 
 from tornado import gen
+from tornado.concurrent import Future
 from tornado.httpclient import AsyncHTTPClient, HTTPError
 
 
@@ -25,43 +26,59 @@ class GitHub(object):
     def search(self, term):
         url = self.get_url(term)
         response = yield self.client.fetch(url)
-        if response.code == 200:
-            result = self._transform_successful_response(json.loads(response.body.decode('utf-8')))
-        else:
-            result = self._handle_error(response)
-        return result
+        results = yield self.handle_response(response)
+        return results
 
-    # Cache this forever - this (normally) don't change
     @gen.coroutine
-    def is_template_repo(self, base_content_url):
-        url = base_content_url.replace('{+path}', 'cookiecutter.json')
-        try:
-            response = yield self.client.fetch(url)
-        except HTTPError:
-            return False
-        return response.code == 200
-
-    def _handle_error(self, response):
-        if response.code == 401:
-            result = {
+    def handle_response(self, response):
+        """
+        Handle GitHub API response
+        """
+        if response.code == 200:
+            decoded_body = json.loads(response.body.decode('utf-8'))
+            result = yield self._transform_successful_response(decoded_body)
+        elif response.code == 401:
+            result = Future()
+            result.set_result({
                 'error': "We're over quota. Please come back after a few minutes :)"
-            }
+            })
         else:
-            result = {
+            result = Future()
+            result.set_result({
                 'error': 'An unknown error ocurred: {}'.format(response.code)
-            }
+            })
         return result
 
-    # Cache this
+    @gen.coroutine
+    def filter_invalid_repositories(self, repository_list):
+        """
+        Remove repositories that aren't cookiecutter template repos
+        """
+        request_queue = []
+        for repository in repository_list:
+            url = repository['contents_url'].replace('{+path}',
+                                                     'cookiecutter.json')
+            request_queue.append(self.client.fetch(url, raise_error=False,
+                                                   method='HEAD'))
+
+        completed_requests = yield request_queue
+
+        valid_repositories = []
+        for repository, response in zip(repository_list, completed_requests):
+            if response.code == 200:
+                valid_repositories.append(repository)
+
+        return valid_repositories
+
+    @gen.coroutine
     def _transform_successful_response(self, response):
         results = []
-        items = response.get('items', [])
+        items = yield self.filter_invalid_repositories(response['items'])
         for item in items:
-            if self.is_template_repo(item['contents_url']):
-                results.append({
-                    'name': item['full_name'],
-                    'description': item['description'],
-                    'url': item['html_url'],
-                    'stars': item['stargazers_count'],
-                })
+            results.append({
+                'name': item['full_name'],
+                'description': item['description'],
+                'url': item['html_url'],
+                'stars': item['stargazers_count'],
+            })
         return {'results': results}
