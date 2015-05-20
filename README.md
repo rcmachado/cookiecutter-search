@@ -29,7 +29,7 @@ some drawbacks - for example, hitting the GitHub API rate limit,
 ignoring projects on other VCS services like BitBucket and so on.
 
 The obvious solution is to build an index - but this requires more
-thinking into the problem. Probably on another afternoon :)
+thinking into the problem. Probably in another afternoon :)
 
 ## Why
 
@@ -47,4 +47,4 @@ must comply with them) as of cookiecutter project.
 [oauth_token]: https://developer.github.com/v3/auth/#via-oauth-tokens
 [Python Brasil 10]: http://2014.pythonbrasil.org.br
 [pydanny]: http://pydanny.com
-[Audrey]: http://audreyr.com
+[audrey]: http://audreyr.com
