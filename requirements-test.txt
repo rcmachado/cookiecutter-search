@@ -1,7 +1,7 @@
 -r requirements.txt
-pytest==2.6.4
-py==1.4.26
-pytest-tornado==0.4.2
+pytest==2.7.1
+py==1.4.27
+pytest-tornado==0.4.3
 
 # Lint
 flake8==2.4.1
