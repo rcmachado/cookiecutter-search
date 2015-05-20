@@ -2,3 +2,9 @@
 pytest==2.6.4
 py==1.4.26
 pytest-tornado==0.4.2
+
+# Lint
+flake8==2.4.1
+pep8==1.5.7
+pyflakes==0.8.1
+mccabe==0.3

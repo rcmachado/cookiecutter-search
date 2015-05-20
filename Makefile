@@ -1,6 +1,6 @@
 .SILENT:
 
-all: install clean test
+all: install clean lint test
 
 clean:
 	find . -iname '*.pyc' -delete
@@ -8,6 +8,9 @@ clean:
 
 install:
 	pip install -r requirements.txt
+
+lint:
+	flake8 .
 
 test:
 	py.test
