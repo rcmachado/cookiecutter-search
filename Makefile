@@ -12,5 +12,8 @@ install:
 lint:
 	flake8 cookiecutter_search app.py
 
+run:
+	DEBUG=1 python app.py
+
 test:
 	py.test
