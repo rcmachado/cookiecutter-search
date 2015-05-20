@@ -39,7 +39,7 @@ class GitHubTest(AsyncTestCase):
             {
                 "name": "audreyr/cookiecutter-pypackage",
                 "description": ("Cookiecutter template for a Python package. "
-                                "See https://github.com/audreyr/cookiecutter"),
+                                "See https://github.com/audreyr/cookiecutter."),  # pragma: noqa
                 "url": "https://github.com/audreyr/cookiecutter-pypackage",
                 "stars": 315,
             },
