@@ -29,13 +29,17 @@ class GitHubTest(AsyncTestCase):
         expected_response = [
             {
                 "name": "audreyr/cookiecutter",
-                "description": "A command-line utility that creates projects from cookiecutters (project templates). E.g. Python package projects, jQuery plugin projects.",
+                "description": ("A command-line utility that creates projects "
+                                "from cookiecutters (project templates). E.g. "
+                                "Python package projects, jQuery plugin "
+                                "projects."),
                 "url": "https://github.com/audreyr/cookiecutter",
                 "stars": 1265,
             },
             {
                 "name": "audreyr/cookiecutter-pypackage",
-                "description": "Cookiecutter template for a Python package. See https://github.com/audreyr/cookiecutter.",
+                "description": ("Cookiecutter template for a Python package. "
+                                "See https://github.com/audreyr/cookiecutter"),
                 "url": "https://github.com/audreyr/cookiecutter-pypackage",
                 "stars": 315,
             },
@@ -47,7 +51,8 @@ class GitHubTest(AsyncTestCase):
             },
             {
                 "name": "pydanny/cookiecutter-djangopackage",
-                "description": "A cookiecutter template for creating reusable Django packages quickly. ",
+                "description": ("A cookiecutter template for creating "
+                                "reusable Django packages quickly. "),
                 "url": "https://github.com/pydanny/cookiecutter-djangopackage",
                 "stars": 64,
             },

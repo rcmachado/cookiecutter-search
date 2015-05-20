@@ -1,7 +1,4 @@
 # coding: utf-8
-import functools
-import hashlib
-
 import pylibmc
 
 from cookiecutter_search import config
@@ -21,7 +18,7 @@ class Memcache(pylibmc.Client):
         kwargs.update({
             'binary': True,
             'behaviors': cfg['OPTIONS'],
-        });
+        })
 
         if cfg.get('USERNAME'):
             kwargs['username'] = cfg['USERNAME']
