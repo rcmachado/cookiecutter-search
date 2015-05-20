@@ -10,7 +10,7 @@ install:
 	pip install -r requirements.txt
 
 lint:
-	flake8 .
+	flake8 cookiecutter_search app.py
 
 test:
 	py.test
