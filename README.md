@@ -1,5 +1,7 @@
 # Cookiecutter search
 
+[![Build Status](https://travis-ci.org/rcmachado/cookiecutter-search.svg?branch=master)](https://travis-ci.org/rcmachado/cookiecutter-search)
+
 A search interface for cookiecutter templates.
 
 You could see it running at http://cookiecutter-search.herokuapp.com
