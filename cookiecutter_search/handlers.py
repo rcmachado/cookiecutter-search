@@ -36,4 +36,4 @@ class SearchHandler(BaseHandler):
             response = yield self.github.search(term)
             self.cache.set(cache_key, response, 3600 * 24)
 
-        self.write(response)
+        self.write({'results': response})
