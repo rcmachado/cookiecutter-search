@@ -12,7 +12,7 @@ More information can be found at https://github.com/audreyr/cookiecutter.
 
 ## How to install
 
-    $ pip install -r requirements.txt
+    $ make install
 
 ## Running the app
 
@@ -20,6 +20,16 @@ You need to get a [GitHub OAuth token][oauth_token] and put it on a
 `GITHUB_TOKEN` env variable. For example:
 
     $ GITHUB_TOKEN='your-github-token' python app.py
+
+## Running the tests
+
+Make sure you've installed test dependencies:
+
+    $ pip install -r requirements-test.txt
+
+And after that run the tests (using [pytest][]):
+
+    $ make test
 
 ## How it works (for now)
 
@@ -48,3 +58,4 @@ must comply with them) as of cookiecutter project.
 [Python Brasil 10]: http://2014.pythonbrasil.org.br
 [pydanny]: http://pydanny.com
 [audrey]: http://audreyr.com
+[pytest]: http://pytest.org
