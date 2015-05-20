@@ -3,7 +3,7 @@
 import os
 
 GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN')
-DEBUG = os.environ.get('DEBUG', True)
+DEBUG = os.environ.get('DEBUG', False)
 PORT = os.environ.get('PORT', 8888)
 
 MEMCACHE = {
